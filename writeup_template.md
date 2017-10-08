@@ -23,9 +23,9 @@ The goals / steps of this project are the following:
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+My pipeline consisted of 5 steps. First, I apply a Gaussian filter of size 5 to the image, then I got edges using cannny edge detector with (1,300) as thresholds. In the next step, the image is cropped to a triangle. The bottom two corners of the image and a point at the middle with height of (0.35*image_height) form the three vertices of the triangle area. Hough line transform is then used to generate lines. Final step is to use the draw_line function to only draw two lines on each side of the image.
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+In order to draw a single line on the left and right lanes, I modified the draw_lines() function by selecting lines with a range of angle I prefer, and then put them into two categraries and average them to get the left and right line.
 
 If you'd like to include images to show how the pipeline works, here is how to include an image: 
 
