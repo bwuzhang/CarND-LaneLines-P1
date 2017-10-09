@@ -1,10 +1,5 @@
 # **Finding Lane Lines on the Road**
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
-
----
 
 **Finding Lane Lines on the Road**
 
@@ -21,16 +16,15 @@ The goals / steps of this project are the following:
 [image4]: ./test_images_output/cropped.png "Cropped"
 [image5]: ./test_images_output/hough.png "Hough"
 
-
 ---
 
 ### Reflection
 
 ### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I ....
+My pipeline consisted of 5 steps. First, I apply a Gaussian filter of size 5 to the image, then I got edges using canny edge detector with (1,300) as thresholds. In the next step, the image is cropped to a triangle. The bottom two corners of the image and a point at the middle with height of (0.35*image_height) form the three vertices of the triangle area. Hough line transform is then used to generate lines. Final step is to use the draw_line function to only draw two lines on each side of the image.
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+In order to draw a single line on the left and right lanes, I modified the draw_lines() function by selecting lines with a range of angle I prefer, and then put them into two categories and average them to get the left and right line.
 
 If you'd like to include images to show how the pipeline works, here is how to include an image:
 
@@ -44,7 +38,7 @@ If you'd like to include images to show how the pipeline works, here is how to i
 ### 2. Identify potential shortcomings with your current pipeline
 
 
-One potential shortcoming would be that it sometimes couldn't find any lanes when the dash lane marks are small. This only happen in some extreme cases and normally disappears when moving into the next frame. 
+One potential shortcoming would be that it sometimes couldn't find any lanes when the dash lane marks are small. This only happen in some extreme cases and normally disappears when moving into the next frame.
 
 The another shortcoming is that my algorithm only works on road with small curvature. It can't adapt to more rapid turning roads.
 
